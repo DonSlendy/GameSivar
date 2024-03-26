@@ -1,0 +1,56 @@
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.row-cols-1>* {
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+.row-cols-md-2>* {
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+
+
+
+.col {
+    flex: 1 0 0%;
+    max-width: 100%;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+    height: auto;
+    width: 300px;
+}
+
+.card-img-top {
+    width: 200px;
+    height: 300px;
+    margin-top: 16px;
+    border-top-left-radius: calc(0.25rem - 1px);
+    border-top-right-radius: calc(0.25rem - 1px);
+}
+
+.card-body {
+    flex: 1 1 auto;
+    padding: 1.25rem;
+}
+
+.card-title {
+    margin-bottom: 0.75rem;
+}
+
+.card-text:last-child {
+    margin-bottom: 0;
+}

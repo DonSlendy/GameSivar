@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameSivar - Recuperar Contraseña</title>
+    <link rel="stylesheet" href="../css/estilo.css">
+</head>
+<body>
+    <div class="form-container">
+        <img src="../images/logo.png" alt="GameSivar Logo" class="logo">
+        <h2>Recuperar Contraseña</h2>
+        <form id="forgotPasswordForm" method="post" action="forgot_password.php">
+            <div class="form-group">
+                <label for="email">Correo Electrónico:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <button type="submit" class="forgot-password-button">Enviar Correo de Recuperación</button>
+            <a href="login.html" class="back-button">Regresar al inicio</a>
+        </form>
+    </div>
+    <script src="../js/script.js"></script>
+</body>
+</html>
