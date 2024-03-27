@@ -11,7 +11,7 @@
                     <li><a href="#"><i class="fa-brands fa-square-x-twitter"></i></i></a></li>
                     <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
                     <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                    <li><i class="fa-brands fa-telegram"></i></a></li>
+                    <li><a href="#"><i class="fa-brands fa-telegram"></i></a></li>
                 </ul>
             </div>
         </div>
