@@ -3,7 +3,7 @@
 
 <head>
     <?php include("../HeaderFooter/cabezal.php"); ?>
-    <title>Gestión de Ventas - Cliente</title>
+    <title>Gestión de Ventas - Empleado</title>
     <link rel="stylesheet" href="../css/GestionDeVentas.css">
 </head>
 

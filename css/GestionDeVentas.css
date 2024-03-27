@@ -2,11 +2,49 @@
     background-color: #232a34;
     color: #ffffff;
 }
-#fondoGDV{
+
+#fondoGDV {
     background-color: #f5f5f5;
 }
 
-thead{
+thead {
     background-color: #232a34;
-    color:#72C05B;
+    color: #72C05B;
+}
+
+tbody {
+    background-color: #ffffff;
+    color: #232a34;
+}
+
+tbody tr:hover {
+    background-color: #72C05B;
+    color: #ffffff;
+}
+
+#Gestion {
+    max-height: 260px;
+    /* Establece la altura máxima de la tabla */
+    overflow-y: auto;
+    text-align: center;
+}
+
+.InfoTarjeta {
+    height: 130px;
+    padding: 15px;
+
+}
+
+#contenedorTarjetas {
+    margin-top: -35px
+}
+
+#Positivo {
+    background-color: rgb(67, 189, 93);
+    border-radius: 10px 10px 0 0;
+}
+
+#Negativo {
+    background-color: rgb(204, 69, 69);
+    border-radius: 0 0 10px 10px;
 }

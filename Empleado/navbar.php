@@ -25,7 +25,6 @@
                 <ul id="nav" class="nav navbar-nav">
                     <li><a href="Empleado.php">Empleado</a></li>
                     <li class="scroll"><a href="GestionDeVentas.php" data-section="#perfil">Información de ventas</a></li>
-                    <li class="scroll"><a href="#cliente" data-section="#cliente">Venta</a></li>
                     <li class="scroll"><a href="#venta" data-section="#venta">Recarga</a></li>
                     <li class="scroll"><a href="#premios" data-section="#premios">Premios</a></li>
                     <li><a href="../Inicio/Inicio.php">Cerrar Sesión</a></li>

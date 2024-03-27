@@ -157,7 +157,7 @@
                 <h3>Tablet</h3>
                 <p>Tendras las posibilidad de ganar este premio por la cantidad de </p>
                 <div class="link">
-                    <a href="#">000 puntos</a>
+                    <a href="#">1000 puntos</a>
 
                 </div>
             </div>
