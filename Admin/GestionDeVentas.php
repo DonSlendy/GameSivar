@@ -12,7 +12,7 @@
     <section id="cta2">
         <div class="container">
             <div class="text-center">
-                <h2 class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="0ms">Administración de ventas y tarjetas para el<span> EMPLEADO</span></h2>
+                <h2 class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="0ms">Administración de ventas y tarjetas para el<span> ADMIN</span></h2>
                 <p class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="100ms">Encuentra la información necesaria para crear tus estadísticas <br />y cumplir con las tareas de tu puesto laboral.</p>
             </div>
         </div>

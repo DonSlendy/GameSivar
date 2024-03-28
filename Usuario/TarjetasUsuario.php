@@ -22,7 +22,7 @@
     <div class="d-flex flex-wrap">
 
         <div class="card text-bg-dark">
-        <img src="../images/Gold.jpg" class="card-img" alt="Imagen de la tarjeta">
+            <img src="../images/Gold.jpg" class="card-img" alt="Imagen de la tarjeta">
             <div class="card-img-overlay">
                 <h5 class="card-title">XXXXXXX</h5>
                 <p class="card-text">

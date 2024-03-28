@@ -1,3 +1,4 @@
+<?php require_once('../Login/seguridad.php');?>
 <header id="top-header" class="navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -23,7 +24,7 @@
         <nav class="collapse navbar-collapse navbar-right" role="navigation">
             <div class="main-menu">
                 <ul id="nav" class="nav navbar-nav">
-                    <li><a href="Usuario.php">Usuario</a></li>
+                    <li><a href="Usuario.php"><?php echo $_SESSION["nombreComSe"]; ?></a></li>
                     <li><a href="TarjetasUsuario.php">Ver tus Tarjetas</a></li>
                     <li><a href="JuegosUsuario.php">Utilizar un Juego</a></li>
                     <li><a href="PremiosUsuario.php">Escoger tus Premios</a></li>

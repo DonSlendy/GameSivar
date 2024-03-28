@@ -1,3 +1,7 @@
+<?php
+session_start();
+session_destroy();
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -38,7 +42,7 @@
                         <li class="scroll"><a href="#donde nos encontramos" data-section="#services">Nuestros servicios</a></li>
                         <li class="scroll"><a href="#imagenes" data-section="#portfolio">imagenes</a></li>
                         <li class="scroll"><a href="#contact" data-section="#contact-area">Contacto</a></li>
-                        <li><a href="../Login/login.html">Iniciar Sesión</a></li>
+                        <li><a href="../Login/Acceso.php">Iniciar Sesión</a></li>
                     </ul>
                 </div>
             </nav>

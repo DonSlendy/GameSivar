@@ -1,3 +1,4 @@
+<?php require_once('../Login/seguridad.php');?>
 <header id="top-header" class="navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -23,7 +24,7 @@
         <nav class="collapse navbar-collapse navbar-right" role="navigation">
             <div class="main-menu">
                 <ul id="nav" class="nav navbar-nav">
-                    <li><a href="Empleado.php">Empleado</a></li>
+                    <li><a href="Empleado.php"><?php echo $_SESSION["nombreComSe"] ?></a></li>
                     <li class="scroll"><a href="GestionDeVentas.php" data-section="#perfil">Información de ventas</a></li>
                     <li class="scroll"><a href="#venta" data-section="#venta">Recarga</a></li>
                     <li class="scroll"><a href="#premios" data-section="#premios">Premios</a></li>
