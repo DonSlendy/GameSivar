@@ -1,24 +1,40 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GameSivar - Recuperar Contraseña</title>
     <link rel="stylesheet" href="../css/estilo.css">
+    <link rel="shortcut icon" sizes="144x144" href="../images/ico/icono.png">
+    <link rel="shortcut icon" sizes="114x114" href="../images/ico/icono.png">
+    <link rel="shortcut icon" sizes="72x72" href="../images/ico/icono.png">
+    <link rel="shortcut icon" href="../images/ico/apple-touch-icon-57-precomposed.png">
+    <script src="https://kit.fontawesome.com/1c53cb40e6.js" crossorigin="anonymous"></script>
+
 </head>
+
 <body>
     <div class="form-container">
         <img src="../images/logo.png" alt="GameSivar Logo" class="logo">
         <h2>Recuperar Contraseña</h2>
         <form id="forgotPasswordForm" method="post" action="forgot_password.php">
             <div class="form-group">
+                <label for="nombre">Ingresa tu nombre de usuario:</label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
+            <div class="form-group">
                 <label for="email">Correo Electrónico:</label>
                 <input type="email" id="email" name="email" required>
             </div>
-            <button type="submit" class="forgot-password-button">Enviar Correo de Recuperación</button>
-            <a href="login.html" class="back-button">Regresar al inicio</a>
+            <button type="submit" class="envio"><i class="fa-solid fa-envelope fa-lg"></i> Enviar Correo de Recuperación</button><br><br>
         </form>
+        <hr>
+        <a href="Acceso.php">
+            <button class="regresar"><i class="fa-solid fa-arrow-right-to-bracket fa-flip-horizontal fa-lg"></i> Regresar al inicio</button>
+        </a>
     </div>
     <script src="../js/script.js"></script>
 </body>
+
 </html>

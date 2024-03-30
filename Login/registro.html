@@ -5,7 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GameSivar - Registro</title>
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/estilo.css">
+    <link rel="shortcut icon" sizes="144x144" href="../images/ico/icono.png">
+    <link rel="shortcut icon" sizes="114x114" href="../images/ico/icono.png">
+    <link rel="shortcut icon" sizes="72x72" href="../images/ico/icono.png">
+    <link rel="shortcut icon" href="../images/ico/apple-touch-icon-57-precomposed.png">
+    <script src="https://kit.fontawesome.com/1c53cb40e6.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -21,9 +26,12 @@
                 <label for="newPassword">Nueva Contraseña:</label>
                 <input type="password" id="newPassword" name="newPassword" required>
             </div>
-            <button type="submit" class="register-button">Registrar</button>
-        </form>
-        <a href="login.html" class="back-button">Regresar al inicio</a>
+            <button type="submit" class="envio"><i class="fa-solid fa-user-plus fa-lg"></i> Registrar</button>
+            <hr>
+        </form><br>
+        <a href="Acceso.php">
+            <button class="regresar"><i class="fa-solid fa-arrow-right-to-bracket fa-flip-horizontal fa-lg"></i> Regresar al inicio</button>
+        </a>
 
     </div>
     <script src="../js/scripts.js"></script>

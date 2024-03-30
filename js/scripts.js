@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     // Mostrar la alerta cuando el registro sea exitoso
                     alert("Usuario creado satisfactoriamente.");
                     // Redirigir al usuario al inicio
-                    window.location.href = "login.html";
+                    window.location.href = "../Login/Acceso.php";
                 } else {
                     // Mostrar un mensaje de error si ocurre algún problema
                     alert("Error al procesar la solicitud.");
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function() {
     if (backButton) {
         backButton.addEventListener("click", function(event) {
             event.preventDefault();
-            window.location.href = "../Login/login.html";
+            window.location.href = "../Login/Acceso.php";
         });
     }
 });

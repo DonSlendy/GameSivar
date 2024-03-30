@@ -27,6 +27,7 @@ while ($sql->fetch()) {
     $_SESSION["contraSe"] = $contra;
     $_SESSION["puntosSe"] = $puntos;
 }
+$sql->close();
 //Redirigiendo al usuario a la página de inicio
 //si el registro de las variables de sesión fue exitoso
 //o de otro modo mandarlo de nuevo a la página de login
@@ -49,3 +50,4 @@ if (count($_SESSION) > 0) {
 } else {
     header("Location: Acceso.php?errorusuario=si");
 }
+?>

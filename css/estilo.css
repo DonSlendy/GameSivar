@@ -9,7 +9,8 @@ body {
     height: 100vh;
 }
 
-.form-container {
+.form-container,
+.login-container {
     background-color: #fff;
     padding: 40px;
     border-radius: 8px;
@@ -31,7 +32,7 @@ body {
     margin-bottom: 20px;
 }
 
-input[type="email"] {
+input {
     width: 100%;
     padding: 12px 20px;
     border: 1px solid #dbdbdb;
@@ -40,7 +41,7 @@ input[type="email"] {
     font-size: 16px;
 }
 
-button {
+.envio {
     background-color: #72C05B;
     border: none;
     border-radius: 4px;
@@ -51,16 +52,52 @@ button {
     width: 100%;
 }
 
-button:hover {
+.envio:hover, .crear:hover, .recuperar:hover, .regresar:hover {
     background-color: #2683e6;
 }
 
-.back-button {
-    color: #00376b;
-    font-size: 14px;
-    text-decoration: none;
+button {
+    cursor: pointer;
+    margin-bottom: 5px;
 }
 
-.back-button:hover {
-    text-decoration: underline;
+.crear {
+    background-color: #f08127;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 12px 20px;
+    width: 100%;
+}
+
+.recuperar {
+    background-color: #d1c841;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 12px 20px;
+    width: 100%;
+}
+
+.regresar {
+    background-color: #e403c6;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 12px 20px;
+    width: 100%;
+}
+.error{
+    background-color: rgb(226, 30, 30);
+    color:white;
+    border-radius: 20px;
+}
+.error p{
+    padding: 5px;
 }
