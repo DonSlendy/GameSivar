@@ -3,7 +3,7 @@
 session_start();
 //Comprueba si el usuario está autenticado, haciendo uso de 
 //la variable de sesión $_SESSION['autenticado']
-if ($_SESSION["autenticado"] == "si") {
+if ($_SESSION["autenticadoEmpleado"] == "si") {
     //No es necesario realizar acción alguna
 } else {
     //si el usuario no está autenticado 

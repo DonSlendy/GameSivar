@@ -34,7 +34,7 @@
         ?>
         <form id="loginForm" method="POST" action="Autentificar.php">
             <div class="form-group">
-                <input type="text" id="username" name="correo" placeholder="Correo" required>
+                <input type="email" id="username" name="correo" placeholder="Correo" required>
             </div>
             <div class="form-group">
                 <input type="password" id="password" name="password" placeholder="Contraseña" required>
@@ -44,7 +44,7 @@
         </form>
         <hr>
         <div class="options">
-            <a href="registro.html">
+            <a href="registro.php">
                 <button class="crear"><i class="fa-solid fa-user-plus fa-lg"></i> Crear nuevo usuario</button>
             </a>
             <a href="recuperar_contrasena.html">

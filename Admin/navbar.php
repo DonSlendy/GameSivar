@@ -1,4 +1,4 @@
-<?php require_once('../Login/seguridad.php');?>
+<?php require_once('seguridadUser.php');?>
 
 <header id="top-header" class="navbar-inverse navbar-fixed-top">
     <div class="container">

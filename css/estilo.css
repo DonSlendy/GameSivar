@@ -98,6 +98,11 @@ button {
     color:white;
     border-radius: 20px;
 }
+.acierto{
+    background-color: rgb(30, 226, 40);
+    color:white;
+    border-radius: 20px;
+}
 .error p{
     padding: 5px;
 }

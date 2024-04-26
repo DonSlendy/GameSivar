@@ -19,7 +19,6 @@ $sql->bind_result($id, $nombre, $apellido, $tipo, $email, $contra, $puntos);
 //Preparando las variables de sesión con los datos
 //obtenidos desde la base de datos con bind_result
 while ($sql->fetch()) {
-    $_SESSION["autenticado"] = "si";
     $_SESSION["idUserSe"] = $id;
     $_SESSION["nombreComSe"] = $nombre . " " . $apellido;
     $_SESSION["tipoSe"] = $tipo;
@@ -34,12 +33,15 @@ $sql->close();
 if (count($_SESSION) > 0) {
     switch ($tipo) {
         case "usuario":
+            $_SESSION["autenticadoUser"] = "si";
             header("Location: ../Usuario/Usuario.php");
             break;
         case "admin":
+            $_SESSION["autenticadoAdmin"] = "si";
             header("Location: ../Admin/Admin.php");
             break;
         case "empleado";
+            $_SESSION["autenticadoEmpleado"] = "si";
             header("Location: ../Empleado/Empleado.php");
             break;
         default:

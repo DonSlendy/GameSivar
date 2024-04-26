@@ -33,7 +33,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $sql->store_result();
             $sql->fetch();
 
-
             // Verificar si se encontraron resultados
             if ($sql->num_rows > 0) {
                 $sql->close();
@@ -139,7 +138,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                     // Cerrar la conexión
                     $sql->close();
-                    $con->close();
                 }
             } else {
                 $sql->close();
