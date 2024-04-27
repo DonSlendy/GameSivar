@@ -21,6 +21,8 @@ $sql->bind_result($id, $nombre, $apellido, $tipo, $email, $contra, $puntos);
 while ($sql->fetch()) {
     $_SESSION["idUserSe"] = $id;
     $_SESSION["nombreComSe"] = $nombre . " " . $apellido;
+    $_SESSION['soloNombreSe'] = $nombre;
+    $_SESSION["soloApellidoSe"] = $apellido;
     $_SESSION["tipoSe"] = $tipo;
     $_SESSION["correoSe"] = $email;
     $_SESSION["contraSe"] = $contra;

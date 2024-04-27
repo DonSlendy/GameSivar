@@ -28,7 +28,7 @@
                     <li><a href="TarjetasUsuario.php">Ver tus Tarjetas</a></li>
                     <li><a href="JuegosUsuario.php">Utilizar un Juego</a></li>
                     <li><a href="PremiosUsuario.php">Escoger tus Premios</a></li>
-                    <li class="scroll"><a href="#">Modificar tu Usuario</a></li>
+                    <li><a href="ModificarUsuario.php">Modificar tu Usuario</a></li>
                     <li><a href="../Inicio/Inicio.php">Cerrar Sesión</a></li>
                 </ul>
             </div>

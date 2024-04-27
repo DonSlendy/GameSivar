@@ -7,6 +7,7 @@ session_destroy();
 
 <head>
     <?php include("../HeaderFooter/cabezal.php"); ?>
+    <title>Principal</title>
 </head><!--/head-->
 
 <body id="home" class="homepage">
@@ -50,6 +51,33 @@ session_destroy();
 
         </div>
     </header>
+    <?php
+    if (isset($_GET["correo"]) && $_GET["correo"] == "exito") {
+        header("refresh:7; url=Inicio.php");
+    ?>
+        <section id="cta2">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="0ms">Correo electrónico actualizado</h2>
+                </div>
+            </div>
+        </section>
+        <?php
+    } else {
+        if (isset($_GET["correo"]) && $_GET["correo"] == "fallo") {
+            header("refresh:7; url=Inicio.php");
+        ?>
+            <section id="cta2">
+                <div class="container">
+                    <div class="text-center">
+                        <h2 class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="0ms">Contacta con nosotros lo antes posible, hubo un error con el correo</h2>
+                    </div>
+                </div>
+            </section>
+    <?php
+        }
+    }
+    ?>
     <!-- carrusel-->
     <section id="main-slider">
         <div class="owl-carousel">
@@ -112,8 +140,6 @@ session_destroy();
                 <div class="col-sm-6 wow fadeInRight">
                     <h3 class="column-title">Más sobre nosotros </h3>
                     <p>Game siver nace de la de diversion en nuestro pais como sabemos una de las caracteristicas mas grandes es la familia y los niños y es de ahi donde game sivar En nuestro parque de juegos, nos esforzamos por ofrecer una experiencia emocionante y segura para personas de todas las edades. Nuestro parque está diseñado para brindar diversión inolvidable a nuestros visitantes. Nuestro compromiso con la seguridad se refleja en cada aspecto de nuestras operaciones, desde el mantenimiento riguroso de maquinas hasta la capacitación continua de nuestro personal. ¡Ven y únete a nosotros para vivir momentos de alegría y aventura junto a tu familia que estas esperando!</p>
-
-
                 </div>
                 <div class="col-sm-6 wow fadeInLeft">
                     <img class="img-responsive" src="../images/logo.png" alt="">
@@ -176,6 +202,7 @@ session_destroy();
             <div class="text-center">
                 <h2 class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="0ms">Más sobre nosotros </h2>
             </div>
+        </div>
     </section>
 
     <section id="services">
