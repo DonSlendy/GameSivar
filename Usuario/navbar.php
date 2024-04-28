@@ -16,7 +16,9 @@
                 <a class="smooth-scroll" data-section="#home" href="#home">
                     <img src="../images/logo.png" alt="" width="40px">
                 </a>
+                <a href="#">Puntos: <?php echo $_SESSION['puntosSe'] ?></a>
             </div>
+            
             <!-- /logo -->
         </div>
 

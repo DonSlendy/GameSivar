@@ -15,7 +15,7 @@
     //Verificar si la conexión fue exitosa
     if ($con->connect_errno) die("Error de conexión: (" . $con->errno . ") " . $con->error);
     $con->set_charset("utf8");
-    $qr = "SELECT * FROM tarjetas WHERE propietario_tarjetas = ?";
+    $qr = "SELECT * FROM tarjetas WHERE propietario_tarjetas = ? AND estado_tarjetas = 'activo'";
     $sql = $con->prepare($qr);
     $num = $_SESSION['idUserSe'];
     $sql->bind_param("i", $num);
@@ -33,29 +33,31 @@
 
     <?php if ($resultado->num_rows > 0) {
     ?>
-        <div class="d-flex flex-wrap">
-
-
-            <?php
-            while ($tarjeta = $resultado->fetch_assoc()) { ?>
-                <div class="card text-bg-dark">
-                    <img src="../images/<?php echo $tarjeta['tipo_tarjetas']; ?>.jpg" class="card-img" alt="Imagen de la tarjeta">
-                    <div class="card-img-overlay">
-                        <h5 class="card-title"><?php echo $tarjeta['id_tarjetas']; ?></h5>
-                        <p class="card-text">
-                            <?php echo "Tarjeta " . $tarjeta['tipo_tarjetas']; ?><br><br>
-                            <?php echo "Saldo actual: $" . $tarjeta['saldo_tarjetas']; ?>
-                        </p>
-                        <p class="card-points">
-                            <?php echo $tarjeta['puntos_tarjetas'] . " Pt"; ?>
-                        </p>
-                        <button class="btnCanje">Canjear puntos</button><br><br>
-                        <h5 class="card-footer"><?php echo "Vence el " . $tarjeta['vencimiento_tarjetas']; ?></h5>
+        <form method="POST" action="canjearPuntos.php">
+            <input type="hidden" value="<?php echo $_SESSION['puntosSe'] ?>" name="puntos">
+            <div class="d-flex flex-wrap">
+                <?php
+                while ($tarjeta = $resultado->fetch_assoc()) { ?>
+                    <div class="card text-bg-dark">
+                        <img src="../images/<?php echo $tarjeta['tipo_tarjetas']; ?>.jpg" class="card-img" alt="Imagen de la tarjeta">
+                        <div class="card-img-overlay">
+                            <h5 class="card-title"><?php echo $tarjeta['id_tarjetas']; ?></h5>
+                            <p class="card-text">
+                                <?php echo "Tarjeta " . $tarjeta['tipo_tarjetas']; ?><br><br>
+                                <?php echo "Saldo actual: $" . $tarjeta['saldo_tarjetas']; ?>
+                            </p>
+                            <p class="card-points">
+                                <?php echo $tarjeta['puntos_tarjetas'] . " Pt"; ?>
+                            </p>
+                            <button class="btnCanje" name="canjePuntos" value="<?php echo $tarjeta['id_tarjetas']; ?>">
+                                Canjear puntos
+                            </button><br><br>
+                            <h5 class="card-footer"><?php echo "Vence el " . $tarjeta['vencimiento_tarjetas']; ?></h5>
+                        </div>
                     </div>
-                </div>
-            <?php } ?>
-
-        </div>
+                <?php } ?>
+            </div>
+        </form>
     <?php } else { ?>
         <section id="portfolio">
             <div class="container">
