@@ -55,7 +55,9 @@
                             <h5 class="card-footer"><?php echo "Vence el " . $tarjeta['vencimiento_tarjetas']; ?></h5>
                         </div>
                     </div>
-                <?php } ?>
+                <?php }
+                $sql->close();
+                ?>
             </div>
         </form>
     <?php } else { ?>
