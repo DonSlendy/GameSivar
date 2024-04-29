@@ -116,7 +116,6 @@
                 ?>
             </div>
         </form>
-        <?php var_dump($tarjetas_array); ?>
         </div>
     <?php } else { ?>
         <section id="portfolio">
