@@ -2,7 +2,7 @@
 <html lang="es">
 
 <head>
-    <title>Usar un Juegp</title>
+    <title>Usar un Juego</title>
     <?php include("../HeaderFooter/cabezal.php"); ?>
     <link rel="stylesheet" href="../css/Juegos.css">
 </head>
@@ -21,9 +21,41 @@
 
     $sql->execute();
     $resultado = $sql->get_result();
+    $sql->close();
+
+    $id = $_SESSION['idUserSe'];
+
+    //Verificar si la conexión fue exitosa
+    if ($con->connect_errno) die("Error de conexión: (" . $con->errno . ") " . $con->error);
+    $con->set_charset("utf8");
+    $qr = "SELECT id_tarjetas FROM tarjetas WHERE propietario_tarjetas = ?";
+    $sql = $con->prepare($qr);
+    $sql->bind_param("i", $id);
+    $sql->execute();
+    $resultado2 = $sql->get_result();
+    $sql->close();
     ?>
 
     <section id="cta2">
+        <?php
+        if (isset($_GET["venta"]) && $_GET["venta"] == "exito") {
+            header("refresh:7; url=JuegosUsuario.php");
+        ?>
+            <div class="text-center" style="background-color: #72c05b;">
+                <h2 style="color: whitesmoke;" class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="0ms">Venta realizada</h2>
+            </div>
+            <?php
+        } else {
+            if (isset($_GET["venta"]) && $_GET["venta"] == "fallo") {
+                header("refresh:7; url=JuegosUsuario.php");
+            ?>
+                <div class="text-center" style="background-color: #ce2f35;">
+                    <h2 style="color: whitesmoke;" class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="0ms">Contacta con nosotros lo antes posible, hubo un error con la venta</h2>
+                </div>
+        <?php
+            }
+        }
+        ?>
         <div class="container">
             <div class="text-center">
                 <h2 class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="0ms">¡Llegó la hora! Es momento de<span> JUGAR</span></h2>
@@ -32,39 +64,59 @@
         </div>
     </section>
 
-    <?php if ($resultado->num_rows > 0) {
+    <?php
+    // Almacenar los resultados del segundo conjunto de resultados en una matriz
+    $tarjetas_array = [];
+    while ($tarjetas = $resultado2->fetch_assoc()) {
+        $tarjetas_array[] = $tarjetas;
+    }
     ?>
-        <div class="row row-cols-1 row-cols-md-2 g-4">
-            <form method="POST" action="comprarJuego.php">
+    <?php if ($resultado->num_rows > 0) {
+        // Almacenar las opciones del select en una variable
+        $opciones_select = '';
+        if (!empty($tarjetas_array)) {
+            foreach ($tarjetas_array as $tarjeta) {
+                $opciones_select .= "<option value=" . $tarjeta['id_tarjetas'] . ">" . $tarjeta['id_tarjetas'] . "</option>";
+            }
+        }
+    ?>
+        <form method="POST" action="comprarJuego.php">
+            <div class="row" id="rowJuegos">
                 <?php
-                while ($juegos = $resultado->fetch_assoc()) {
-                    echo '<img class="card-img-top" src="data:image/jpeg;base64,' . base64_encode($juegos['imagen_juegos']) . '">';
-                }
-                $sql->close();
-                ?>
-                <!--
-        <div class="col">
-            <div class="card">
-                <a align="center"><img src="../images/mario.jpg" class="card-img-top" alt="..."></a>
-                <div class="card-body">
-                    <h5 class="card-title">Super mario galaxy 2</h5>
-                    <p class="card-text">
-                        sigue la aventura que Mario realiza para derrotar al malvado Bowser en el espacio
-                        exterior, donde capturó a la Princesa Peach y tomó el control del Cosmos.
-                    </p>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Desarrollador: Nintendo</li>
-                        <li class="list-group-item">Genero: Plataformeo</li>
-                        <li class="list-group-item">$30.00</li>
-                    </ul>
-                    <div class="card-body">
-                        <a href="#" class="card-link">Adquierelo</a>
+                while ($juegos = $resultado->fetch_assoc()) { ?>
+                <input type="hidden" name="precio" value="<?php echo $juegos['precio_juegos'] ?>">
+                    <div class="card">
+                        <?php echo '<a align="center"><img class="card-img-top" src="data:image/jpeg;base64,' . base64_encode($juegos['imagen_juegos']) . '"></a>'; ?>
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo $juegos['nombre_juegos'] ?></h5>
+                            <p class="card-text"><?php echo $juegos['descripcion_juegos'] ?></p>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Desarrollador: <?php echo $juegos['desarrollador_juegos'] ?></li>
+                                <li class="list-group-item">Genero: <?php echo $juegos['genero_juegos'] ?></li>
+                                <li class="list-group-item">Precio: $<?php echo $juegos['precio_juegos'] ?></li>
+                            </ul>
+                            <?php
+                            if (!empty($tarjetas_array)) {
+                                // Iterar sobre la matriz de tarjetas para mostrar el select
+                                echo '<select name="tarjetaUser_' . $juegos['id_juegos'] . '" class="form-control" requerid>';
+                                echo $opciones_select;
+                                echo '</select>';
+                            } else {
+                                echo '<input type="text" disabled value="No tienes tarjetas">';
+                            }
+                            ?>
+                            <p align="center">
+                                <button type="submit" name="btnCompra" value="<?php echo $juegos['id_juegos']; ?>">
+                                    Comprar
+                                </button>
+                            </p>
+                        </div>
                     </div>
-                </div>
+                <?php }
+                ?>
             </div>
-        </div>
-    -->
-            </form>
+        </form>
+        <?php var_dump($tarjetas_array); ?>
         </div>
     <?php } else { ?>
         <section id="portfolio">

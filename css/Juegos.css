@@ -1,29 +1,15 @@
 .row {
     display: flex;
     flex-wrap: wrap;
-    margin-right: -15px;
-    margin-left: -15px;
+    padding-left: 8px;
 }
 
-.row-cols-1>* {
-    flex: 0 0 100%;
-    max-width: 100%;
-}
-
-.row-cols-md-2>* {
-    flex: 0 0 50%;
-    max-width: 50%;
-}
-
-
-
-.col {
-    flex: 1 0 0%;
-    max-width: 100%;
+#rowJuegos {
+    width: 100vw;
+    background-color: rgb(248, 244, 248);
 }
 
 .card {
-    position: relative;
     display: flex;
     flex-direction: column;
     background-color: #fff;
@@ -31,7 +17,7 @@
     border: 1px solid rgba(0, 0, 0, 0.125);
     border-radius: 0.25rem;
     height: auto;
-    width: 300px;
+    width: 230px;
 }
 
 .card-img-top {
@@ -43,8 +29,8 @@
 }
 
 .card-body {
-    flex: 1 1 auto;
     padding: 1.25rem;
+    margin-bottom: -10px;
 }
 
 .card-title {
@@ -53,4 +39,17 @@
 
 .card-text:last-child {
     margin-bottom: 0;
+}
+
+button {
+    background-color: #ffffff;
+    color: #72c05b;
+    border-style: solid;
+    border-radius: 20px;
+    border-color: #72c05b;
+    margin-top: 10px;
+}
+button:hover{
+    background-color: #72c05b;
+    color: #ffffff;
 }
