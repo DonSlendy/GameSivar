@@ -38,7 +38,7 @@ if ($correo == $_SESSION['correoSe']) {
         $_SESSION["contraSe"] = $contra;
     }
     $sql->close();
-    header("Location: Usuario.php");
+    header("Location: Admin.php");
 } else {
     // Generar bytes aleatorios
     $bytes = random_bytes(10); // 10 bytes serán suficientes para 10 caracteres

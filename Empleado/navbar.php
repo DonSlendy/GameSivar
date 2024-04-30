@@ -25,7 +25,6 @@
             <div class="main-menu">
                 <ul id="nav" class="nav navbar-nav">
                     <li><a href="Empleado.php"><?php echo $_SESSION["nombreComSe"] ?></a></li>
-                    <li class="scroll"><a href="GestionDeVentas.php" data-section="#perfil">Información de ventas</a></li>
                     <li><a href="VentadeTarjetas.php">Venta de tarjetas</a></li>
                     <li class="scroll"><a href="#venta" data-section="#venta">Recarga</a></li>
                     <li class="scroll"><a href="#premios" data-section="#premios">Premios</a></li>
