@@ -84,7 +84,7 @@
             <div class="row" id="rowJuegos">
                 <?php
                 while ($juegos = $resultado->fetch_assoc()) { ?>
-                <input type="hidden" name="precio" value="<?php echo $juegos['precio_juegos'] ?>">
+                    <input type="hidden" name="precio" value="<?php echo $juegos['precio_juegos'] ?>">
                     <div class="card">
                         <?php echo '<a align="center"><img class="card-img-top" src="data:image/jpeg;base64,' . base64_encode($juegos['imagen_juegos']) . '"></a>'; ?>
                         <div class="card-body">
@@ -112,7 +112,8 @@
                             </p>
                         </div>
                     </div>
-                <?php }
+                <?php
+                }
                 ?>
             </div>
         </form>
@@ -121,7 +122,6 @@
         <section id="portfolio">
             <div class="container">
                 <div class="section-header">
-                    <?php echo $_SESSION['idUserSe'] ?>
                     <h2 class="section-title text-center wow fadeInDown">Agregaremos próximamente más juegos</h2>
                     <p class="text-center wow fadeInDown">Parece que no has encontrado juegos, no te preocupes, estamos modificando nuestros inventarios para renovar el catálogo de videojuegos</p>
                 </div>

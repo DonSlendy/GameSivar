@@ -1,3 +1,17 @@
+<?php
+//Conectando a base de datos
+$con = new mysqli("localhost", "root", "", "catedra_dss");
+//Verificar si la conexión fue exitosa
+if ($con->connect_errno) die("Error de conexión: (" . $con->errno . ") " . $con->error);
+$con->set_charset("utf8");
+$qr = "SELECT * FROM premios WHERE estado_premios = 'activo'";
+$sql = $con->prepare($qr);
+
+$sql->execute();
+$resultado = $sql->get_result();
+$sql->close();
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -18,179 +32,43 @@
             </div>
         </div>
     </section>
-
     <div class="section-header">
-        <h2 class="section-title text-center wow fadeInDown">Nuestros premios</h2>
-    </div>
-
-
-    <!--AÑADI ETIQUETA SECTION QUE ABARCA TODAS LAS CARDS-->
-    <section class="section_card">
-        <div class="card">
-            <div class="face front">
-                <img src="../images/premios/camisas.jpg" alt="">
+                <h2 class="section-title text-center wow fadeInDown">Solicita el canje de premios con nuestros trabajadores</h2>
             </div>
-            <div class="face back">
-                <h3>Camisas</h3>
-                <p>Tendras las posibilidad de ganar este premio por la cantidad de </p>
-                <div class="link">
-                    <a href="#">500 puntos</a>
 
+
+            <!--AÑADI ETIQUETA SECTION QUE ABARCA TODAS LAS CARDS-->
+            <section class="section_card">
+    <?php if ($resultado->num_rows > 0) {
+        while ($premios = $resultado->fetch_assoc()) { ?>
+            
+                <div class="card">
+                    <div class="face front">
+                        <?php echo '<img src="data:image/jpeg;base64,' . base64_encode($premios['imagen_premios']) . '"> alt=>'; ?>
+                    </div>
+                    <div class="face back">
+                        <h3><?php echo $premios['nombre_premios'] ?></h3>
+                        <p>Tendras las posibilidad de ganar este premio por la cantidad de </p>
+                        <div class="link">
+                            <a href="#"><?php echo $premios['costo_premios'] ?> puntos</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="face front">
-                <img src="../images/premios/calcomanias.jpg" alt="">
-            </div>
-            <div class="face back">
-                <h3>Calcomanias</h3>
-                <p>Tendras las posibilidad de ganar este premio por la cantidad de </p>
-                <div class="link">
-                    <a href="#">500 puntos</a>
-
+            <?php
+        }
+            ?>
+            </section>
+        <?php } else { ?>
+            <section id="portfolio">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title text-center wow fadeInDown">Agregaremos próximamente más juegos</h2>
+                        <p class="text-center wow fadeInDown">Parece que no has encontrado juegos, no te preocupes, estamos modificando nuestros inventarios para renovar el catálogo de videojuegos</p>
+                    </div>
                 </div>
-            </div>
-        </div>
-
-
-        <div class="card">
-            <div class="face front">
-                <img src="../images/premios/peluches.jpg" alt="">
-            </div>
-            <div class="face back">
-                <h3>Peluches</h3>
-                <p>Tendras las posibilidad de ganar este premio por la cantidad de </p>
-                <div class="link">
-                    <a href="#">300 puntos</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="face front">
-                <img src="../images/premios/muñecas.jpg" alt="">
-            </div>
-            <div class="face back">
-                <h3>Meñecas</h3>
-                <p>Tendras las posibilidad de ganar este premio por la cantidad de </p>
-                <div class="link">
-                    <a href="#">5000 puntos</a>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="face front">
-                <img src="../images/premios/carros.jpg" alt="">
-            </div>
-            <div class="face back">
-                <h3>Carros</h3>
-                <p>Tendras las posibilidad de ganar este premio por la cantidad de </p>
-                <div class="link">
-                    <a href="#">5000 puntos</a>
-
-                </div>
-
-            </div>
-        </div>
-        <div class="card">
-            <div class="face front">
-                <img src="../images/premios/yoyos.jpg" alt="">
-            </div>
-            <div class="face back">
-                <h3>yoyos</h3>
-                <p>Tendras las posibilidad de ganar este premio por la cantidad de </p>
-                <div class="link">
-                    <a href="#">300 puntos</a>
-
-                </div>
-
-            </div>
-        </div>
-        <div class="card">
-            <div class="face front">
-                <img src="../images/premios/gorras.jpg" alt="">
-            </div>
-            <div class="face back">
-                <h3>gorras</h3>
-                <p>Tendras las posibilidad de ganar este premio por la cantidad de </p>
-                <div class="link">
-                    <a href="#">500 puntos</a>
-
-                </div>
-
-            </div>
-        </div>
-        <div class="card">
-            <div class="face front">
-                <img src="../images/premios/relojes.webp" alt="">
-            </div>
-            <div class="face back">
-                <h3>Reloj</h3>
-                <p>Tendras las posibilidad de ganar este premio por la cantidad de </p>
-                <div class="link">
-                    <a href="#">1200 puntos</a>
-
-                </div>
-
-            </div>
-        </div>
-        <div class="card">
-            <div class="face front">
-                <img src="../images/premios/globos.webp" alt="">
-            </div>
-            <div class="face back">
-                <h3>Globos</h3>
-                <p>Tendras las posibilidad de ganar este premio por la cantidad de </p>
-                <div class="link">
-                    <a href="#">800 puntos</a>
-                </div>
-            </div>
-
-        </div>
-        <div class="card">
-            <div class="face front">
-                <img src="../images/premios/tablet.jpg" alt="">
-            </div>
-            <div class="face back">
-                <h3>Tablet</h3>
-                <p>Tendras las posibilidad de ganar este premio por la cantidad de </p>
-                <div class="link">
-                    <a href="#">1000 puntos</a>
-
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="face front">
-                <img src="../images/premios/sellos.jpg" alt="">
-            </div>
-            <div class="face back">
-                <h3>sellos</h3>
-                <p>Tendras las posibilidad de ganar este premio por la cantidad de </p>
-                <div class="link">
-                    <a href="#">500 puntos</a>
-
-                </div>
-            </div>
-        </div>
-        </div>
-        <div class="card">
-            <div class="face front">
-                <img src="../images/premios/lapices.jpg" alt="">
-            </div>
-            <div class="face back">
-                <h3>lapices</h3>
-                <p>Tendras las posibilidad de ganar este premio por la cantidad de </p>
-                <div class="link">
-                    <a href="#">500 puntos</a>
-
-                </div>
-            </div>
-        </div>
-    </section>
-<?php include("../HeaderFooter/footer.php") ?>
+            </section>
+        <?php } ?>
+        <?php include("../HeaderFooter/footer.php") ?>
 </body>
 
 </html>

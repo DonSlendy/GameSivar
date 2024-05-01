@@ -51,13 +51,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                        VALUES ('$id_tarjetas', '$tipo_tarjeta', $limite_tarjeta, $saldo_tarjeta, '$vencimiento_tarjeta', (SELECT id_usuarios FROM usuarios WHERE correo_usuarios = '$correo'), $puntos_tarjeta, '$estado_tarjeta')";
 
         if ($con->query($sql_insert) === TRUE) {
-            echo "¡Compra procesada con éxito y tarjeta generada!";
+            header("Location: VentadeTarjetas.php?venta=exito");
         } else {
-            echo "Error al procesar la compra y generar la tarjeta: " . $con->error;
+            header("Location: VentadeTarjetas.php?venta=fallo");
         }
     } else {
         // El correo no existe en la tabla de usuarios, mostrar mensaje de error
-        echo "El correo electrónico proporcionado no está registrado.";
+        header("Location: VentadeTarjetas.php?venta=fallo");
     }
 
     // Cerrar la conexión a la base de datos

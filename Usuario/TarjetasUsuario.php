@@ -64,7 +64,6 @@
         <section id="portfolio">
             <div class="container">
                 <div class="section-header">
-                    <?php echo $_SESSION['idUserSe'] ?>
                     <h2 class="section-title text-center wow fadeInDown">No tienes tarjetas</h2>
                     <p class="text-center wow fadeInDown">Necesitas tarjetas para empezar a jugar, ve con un trabajador de la compañía para que pueda indicarte como obtener las tarjetas</p>
                 </div>

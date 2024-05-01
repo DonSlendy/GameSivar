@@ -10,12 +10,41 @@
 <body id="home" class="homepage">
     <?php require("navbar.php"); ?>
 
+
+    <section id="cta2">
+        <?php
+        if (isset($_GET["venta"]) && $_GET["venta"] == "exito") {
+            header("refresh:7; url=VentadeTarjetas.php");
+        ?>
+            <div class="text-center" style="background-color: #72c05b;">
+                <h2 style="color: whitesmoke;" class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="0ms">Venta realizada</h2>
+            </div>
+            <?php
+        } else {
+            if (isset($_GET["venta"]) && $_GET["venta"] == "fallo") {
+                header("refresh:7; url=VentadeTarjetas.php");
+            ?>
+                <div class="text-center" style="background-color: #ce2f35;">
+                    <h2 style="color: whitesmoke;" class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="0ms">Contacta con un administrador, hubo un error con la venta</h2>
+                </div>
+        <?php
+            }
+        }
+        ?>
+        <div class="container">
+            <div class="text-center">
+                <h2 class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="0ms">Formulario para la <span>VENTA DE TARJETAS</span></h2>
+                <p class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="100ms">Ingresa los datos del cliente para su venta.<br />Toma el dato que coincida con la descripción del cliente para aprobar la venta.</p>
+            </div>
+        </div>
+    </section>
+    
+    
     <section id="contact-area">
         <div class="container">
             <div class="row">
                 <div class="section-header">
-                    <h2 class="section-title text-center wow fadeInDown animated" style="visibility: visible;">Venta de Tarjetas!</h2>
-                    <p class="text-center wow fadeInDown animated" style="visibility: visible;">Para ingresar a nuestros juegos y servicios, compra una tarjeta de tu eleccion.</p>
+                    <h2 class="section-title text-center wow fadeInDown animated" style="visibility: visible;">Ingresa los datos acá:</h2>
                 </div>
                 <form id="main-contact-form" name="contact-form" method="post" action="InsertarTarjeta.php">
                     <div class="col-lg-6 animated animate-from-left" style="opacity: 1; left: 0px;">
