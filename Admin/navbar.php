@@ -28,7 +28,7 @@
                     <li><a href="Admin.php" data-section="#"><?php echo $_SESSION["nombreComSe"]?></a></li>
                     <li><a href="AdministrarEmpleados.php">Administrar Empleados</a></li>
                     <li><a href="AdministrarPremios.php">Administrar Premios</a></li>
-                    <li class="scroll"><a href="#services" data-section="#services">Administrar Juegos</a></li>
+                    <li><a href="AdministrarJuegos.php">Administrar Juegos</a></li>
                     <li><a href="ModificarAdmin.php">Modificar tus datos</a></li>
                     <li><a href="../Inicio/Inicio.php">Cerrar Sesión</a></li>
                 </ul>

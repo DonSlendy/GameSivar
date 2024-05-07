@@ -12,13 +12,17 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $cantidad = $con->real_escape_string(trim($_POST['cantidad']));
 
     $imagen = $_FILES['imagen']['tmp_name'];
+    $file_type = $_FILES['imagen']['type'];
 
     $id = $con->real_escape_string(trim($_POST['id']));
-    echo "id: $id";
     if ($id == "") {
         if ($imagen == "") {
             header("Location: AdministrarPremios.php?premio=fallo");
         } else {
+            $allowed_types = ['image/jpeg', 'image/jpg'];
+            if (!in_array($file_type, $allowed_types)) {
+                header("Location: AdministrarPremios.php?premio=fallo");
+            }
             $imagenData = file_get_contents($imagen);
             $qr = "INSERT INTO 
             premios (nombre_premios,costo_premios,estado_premios,cantidad_premios,imagen_premios) 
@@ -40,6 +44,10 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
             $sql = $con->prepare($qr);
             $sql->bind_param("sisii", $name, $costo, $estado, $cantidad, $id);
         } else {
+            $allowed_types = ['image/jpeg', 'image/jpg'];
+            if (!in_array($file_type, $allowed_types)) {
+                header("Location: AdministrarPremios.php?premio=fallo");
+            }
             $imagenData = file_get_contents($imagen);
 
             $qr = "UPDATE premios 

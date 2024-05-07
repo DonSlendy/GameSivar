@@ -20,6 +20,34 @@ $resultado = $sql->get_result();
 
 <body id="home" class="homepage">
     <?php include("navbar.php"); ?>
+    <?php
+    if (isset($_GET["premio"]) && $_GET["premio"] == "exito") {
+        header("refresh:7; url=AdministrarPremios.php");
+    ?>
+        <section id="cta2">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="0ms">Acción realizada</h2>
+                </div>
+            </div>
+        </section>
+        <?php
+    }
+    ?>
+    <?php
+    if (isset($_GET["premio"]) && $_GET["premio"] == "fallo") {
+        header("refresh:7; url=AdministrarPremios.php");
+    ?>
+        <section id="cta2">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="0ms">Acción no realizada</h2>
+                </div>
+            </div>
+        </section>
+        <?php
+    }
+    ?>
     <section id="cta2">
         <div class="container">
             <div class="text-center">
