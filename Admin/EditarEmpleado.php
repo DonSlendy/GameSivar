@@ -9,49 +9,12 @@
 <body id="home" class="homepage">
     <?php include("navbar.php"); ?>
     <!-- Primera imagen slinder-->
-    <section id="main-slider">
-        <div class="owl-carousel">
-            <div class="item" style="background-image: url(../images/slider/bg1.png);">
-                <div class="slider-inner">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="carousel-content text-center">
-                                    <h2>GAMER<span>SIVAR</span>.</h2>
-                                    <p>Deja que con los juegos tu mente vuele</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- Segunda imagen slinder-->
-            <div class="item" style="background-image: url(../images/slider/gb2.jpg);">
-                <div class="slider-inner">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="carousel-content text-center">
-                                    <h2>GAMER<span>SIVAR</span>.</h2>
-                                    <p>Deja que con los juegos tu mente vuele</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- Tercera imagen slinder-->
-            <div class="item" style="background-image: url(../images/slider/gb3.jpg);">
-                <div class="slider-inner">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="carousel-content text-center">
-                                    <h2>GAMER<span>SIVAR</span>.</h2>
-                                    <p>Deja que con los juegos tu mente vuele</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <section id="cta2">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="0ms">Aquí se encuentran todos tus <span>EMPLEADOS</span>.</h2>
+                <p class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="100ms">Modificala a su gusto por si algo cambió desde el primer día.<br />
+                    Recuerda que los datos privados de tus empleados son tu responsabildad.</p>
             </div>
         </div>
     </section>
@@ -67,7 +30,7 @@
 
         //Verificamos la conexión 
         if($conn->connect_error){
-            die("Eror en la conexión a la base de datos: " . $conn->connct_error);
+            die("Eror en la conexión a la base de datos: " . $conn->connect_error);
         }
 
 
@@ -125,7 +88,7 @@
             </div>
             <div class="col-lg-6">
                 <div class="table-responsive">
-                   <img src="/images/w-1.jpg" width="500px">
+                   <img src="../images/w-1.jpg" width="500px">
                 </div>
             </div>
         </div>
