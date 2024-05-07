@@ -39,6 +39,7 @@
                                     <th>Persona que la hizo</th>
                                     <th>Tarjeta de la persona</th>
                                     <th>Correo de la persona</th>
+                                    <th>ID usuario</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -62,37 +63,39 @@
                                 // Obtener la fecha actual
                                 $fechaActual = date('Y-m-d');
 
-                                $sql = "SELECT t.id_transacciones, t.tipo_transacciones, t.costo_transacciones, t.fecha_transacciones, u.nombre_usuarios, t.id_tarjetas, u.correo_usuarios
-                        FROM transacciones t
-                        LEFT JOIN usuarios u ON t.id_tarjetas = u.id_usuarios
-                        WHERE fecha_transacciones BETWEEN '$inicioSemana' AND '$fechaActual'
-                        ORDER BY fecha_transacciones DESC";
+                                $sql = "SELECT t.id_transacciones, t.tipo_transacciones, t.costo_transacciones, t.fecha_transacciones, u.nombre_usuarios, t.id_tarjetas, u.correo_usuarios, u.id_usuarios
+                                        FROM transacciones t
+                                        LEFT JOIN usuarios u ON t.id_usuarios = u.id_usuarios
+                                        WHERE fecha_transacciones BETWEEN '$inicioSemana' AND '$fechaActual'
+                                        ORDER BY fecha_transacciones DESC";
 
                                 $result = $conn->query($sql);
 
                                 if ($result->num_rows > 0) {
                                     while ($row = $result->fetch_assoc()) {
                                         echo "<tr>";
-                                        echo "<td>" . $row["id_transacciones"] . "</td>";
-                                        echo "<td>" . $row["tipo_transacciones"] . "</td>";
-                                        echo "<td>$" . number_format($row["costo_transacciones"], 2) . "</td>";
-                                        echo "<td>" . $row["fecha_transacciones"] . "</td>";
-                                        echo "<td>" . $row["nombre_usuarios"] . "</td>";
-                                        echo "<td>" . $row["id_tarjetas"] . "</td>";
-                                        echo "<td>" . $row["correo_usuarios"] . "</td>";
+                                        echo "<td>" . ($row["id_transacciones"] ?? "N/A") . "</td>";
+                                        echo "<td>" . ($row["tipo_transacciones"] ?? "N/A") . "</td>";
+                                        echo "<td>$" . number_format(($row["costo_transacciones"] ?? 0), 2) . "</td>";
+                                        echo "<td>" . ($row["fecha_transacciones"] ?? "N/A") . "</td>";
+                                        echo "<td>" . ($row["nombre_usuarios"] ?? "N/A") . "</td>";
+                                        echo "<td>" . ($row["id_tarjetas"] ?? "N/A") . "</td>";
+                                        echo "<td>" . ($row["correo_usuarios"] ?? "N/A") . "</td>";
+                                        echo "<td>" . ($row["id_usuarios"] ?? "N/A") . "</td>";
                                         echo "</tr>";
                                     }
                                 } else {
                                     echo "<tr><td colspan='7'>No se encontraron registros esta semana</td></tr>";
                                 }
-
-
                                 ?>
+
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
+
+
             <div class="col-lg-6">
                 <div class="section-header">
                     <h2 id="titulosform" class="section-title text-center wow fadeInDown animated" style="visibility: visible;">Clientes que realizan más compras en esta semana</h2>
@@ -130,12 +133,13 @@
                                 // Obtener la fecha actual
                                 $fechaActual = date('Y-m-d');
 
-                                $sql = "SELECT u.id_usuarios, u.nombre_usuarios, u.apellidos_usuarios, COUNT(t.id_transacciones) AS transacciones_realizadas, SUM(t.costo_transacciones) AS total_comprado, MAX(t.tipo_transacciones) AS transaccion_favorita, u.correo_usuarios
-                                            FROM usuarios u
-                                            LEFT JOIN transacciones t ON u.id_usuarios = t.id_tarjetas
-                                            WHERE t.fecha_transacciones BETWEEN '$inicioSemana' AND '$fechaActual'
-                                            GROUP BY u.id_usuarios
-                                            ORDER BY transacciones_realizadas DESC";
+                                $sql = "SELECT u.id_usuarios, u.nombre_usuarios, u.apellidos_usuarios, COUNT(t.id_transacciones) AS transacciones_realizadas, 
+               SUM(t.costo_transacciones) AS total_comprado, MAX(t.tipo_transacciones) AS transaccion_favorita, u.correo_usuarios
+        FROM usuarios u
+        LEFT JOIN transacciones t ON u.id_usuarios = t.id_usuarios
+        WHERE t.fecha_transacciones BETWEEN '$inicioSemana' AND '$fechaActual'
+        GROUP BY u.id_usuarios
+        ORDER BY transacciones_realizadas DESC";
 
                                 $result = $conn->query($sql);
 
@@ -156,6 +160,7 @@
                                 }
 
                                 ?>
+
                             </tbody>
                         </table>
                     </div>
@@ -218,12 +223,17 @@
                 <div id="contenedorTarjetas">
                     <div class="InfoTarjeta" id="Positivo">
                         <?php
-                        $sql_most_sold = "SELECT id_tarjetas, COUNT(*) AS num_transacciones FROM transacciones GROUP BY id_tarjetas ORDER BY num_transacciones DESC LIMIT 1";
+                        $sql_most_sold = "SELECT tipo_tarjetas, COUNT(*) AS total_repeticiones
+                              FROM tarjetas
+                              GROUP BY tipo_tarjetas
+                              ORDER BY total_repeticiones DESC
+                              LIMIT 1";
+
                         $result_most_sold = $conn->query($sql_most_sold);
 
                         if ($result_most_sold->num_rows > 0) {
                             $row_most_sold = $result_most_sold->fetch_assoc();
-                            echo "<h1 id='titulosform' style='margin-top: 10px;' align='center'>Tarjeta más vendida: " . $row_most_sold["id_tarjetas"] . "<br>Total de veces vendida: " . $row_most_sold["num_transacciones"] . "</h1>";
+                            echo "<h1 id='titulosform' style='margin-top: 10px;' align='center'>Tarjeta más vendida: " . $row_most_sold["tipo_tarjetas"] . "<br>Total de veces vendida: " . $row_most_sold["total_repeticiones"] . "</h1>";
                         } else {
                             echo "<h1 id='titulosform' style='margin-top: 10px;' align='center'>No hay información disponible</h1>";
                         }
@@ -231,12 +241,17 @@
                     </div>
                     <div class="InfoTarjeta" id="Negativo">
                         <?php
-                        $sql_least_sold = "SELECT id_tarjetas, COUNT(*) AS num_transacciones FROM transacciones GROUP BY id_tarjetas ORDER BY num_transacciones ASC LIMIT 1";
+                        $sql_least_sold = "SELECT tipo_tarjetas, COUNT(*) AS total_repeticiones
+                            FROM tarjetas
+                            GROUP BY tipo_tarjetas
+                            ORDER BY total_repeticiones ASC
+                               LIMIT 1";
+
                         $result_least_sold = $conn->query($sql_least_sold);
 
                         if ($result_least_sold->num_rows > 0) {
                             $row_least_sold = $result_least_sold->fetch_assoc();
-                            echo "<h1 id='titulosform' style='margin-top: 10px;' align='center'>Tarjeta menos vendida: " . $row_least_sold["id_tarjetas"] . "<br>Total de veces vendida: " . $row_least_sold["num_transacciones"] . "</h1>";
+                            echo "<h1 id='titulosform' style='margin-top: 10px;' align='center'>Tarjeta menos vendida: " . $row_least_sold["tipo_tarjetas"] . "<br>Total de veces vendida: " . $row_least_sold["total_repeticiones"] . "</h1>";
                         } else {
                             echo "<h1 id='titulosform' style='margin-top: 10px;' align='center'>No hay información disponible</h1>";
                         }
