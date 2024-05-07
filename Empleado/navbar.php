@@ -28,6 +28,7 @@
                     <li><a href="VentadeTarjetas.php">Venta de tarjetas</a></li>
                     <li class="scroll"><a href="#venta" data-section="#venta">Recarga de Tarjetas</a></li>
                     <li><a href="VentaDePremios.php">Venta de Premios</a></li>
+                    <li><a href="GestionDeVentas.php">Gestion de Ventas</a></li>
                     <li><a href="../Inicio/Inicio.php">Cerrar Sesión</a></li>
                 </ul>
             </div>

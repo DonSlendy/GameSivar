@@ -1,6 +1,26 @@
 <?php
 session_start();
 session_destroy();
+//Conectando a base de datos
+$con = new mysqli("localhost", "root", "", "catedra_dss");
+//Verificar si la conexión fue exitosa
+if ($con->connect_errno) die("Error de conexión: (" . $con->errno . ") " . $con->error);
+$con->set_charset("utf8");
+$qr = "SELECT c.*, u.nombre_usuarios
+FROM comentarios c
+JOIN usuarios u ON c.id_usuarios = u.id_usuarios -- Join con la tabla usuarios usando la llave foránea id_usuario
+JOIN (
+    SELECT id_comentarios
+    FROM comentarios
+    WHERE tipo_comentario = 'Opinion'
+    ORDER BY RAND()
+    LIMIT 3
+) AS random_ids
+ON c.id_comentarios = random_ids.id_comentarios;";
+$sql = $con->prepare($qr);
+
+$sql->execute();
+$resultado = $sql->get_result();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -52,6 +72,7 @@ session_destroy();
         </div>
     </header>
     <?php
+    
     if (isset($_GET["correo"]) && $_GET["correo"] == "exito") {
         header("refresh:7; url=Inicio.php");
     ?>
@@ -76,6 +97,34 @@ session_destroy();
             </section>
     <?php
         }
+    }
+    ?>
+    <?php
+    if (isset($_GET["comentario"]) && $_GET["comentario"] == "exito") {
+        header("refresh:7; url=Inicio.php");
+    ?>
+        <section id="cta2">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="0ms">Comentario realizado</h2>
+                </div>
+            </div>
+        </section>
+        <?php
+    }
+    ?>
+    <?php
+    if (isset($_GET["comentario"]) && $_GET["comentario"] == "fallo") {
+        header("refresh:7; url=Inicio.php");
+    ?>
+        <section id="cta2">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="0ms">No se pudo hacer el comentario</h2>
+                </div>
+            </div>
+        </section>
+        <?php
     }
     ?>
     <!-- carrusel-->
@@ -153,7 +202,7 @@ session_destroy();
     <section id="features">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title text-center wow fadeInDown">Nuestro Horarios</h2>
+                <h2 class="section-title text-center wow fadeInDown">Nuestros Horarios</h2>
             </div>
             <div class="row">
                 <div class="col-sm-6 wow fadeInLeft">
@@ -165,8 +214,8 @@ session_destroy();
                             <p><img class="img-thumbnail" src="../images/ico/horarios (1).png" alt=""></p>
                         </div>
                         <div class="media-body">
-                            <h4 class="media-heading">Horarios Martes y Juves</h4>
-                            <p>Abrimos de 8 de la manaña a 4.30 de la Tarde </p>
+                            <h4 class="media-heading">Horarios Martes y Jueves</h4>
+                            <p>Abrimos de 8 de la manaña a 4:30 de la Tarde </p>
                         </div>
                     </div>
 
@@ -176,7 +225,7 @@ session_destroy();
 
                         </div>
                         <div class="media-body">
-                            <h4 class="media-heading">Horarios Sabodo y Domingo</h4>
+                            <h4 class="media-heading">Horarios Sábado y Domingo</h4>
                             <p>Abrimos de 9 de la manaña a 10 de la noche </p>
                         </div>
                     </div>
@@ -187,8 +236,8 @@ session_destroy();
 
                         </div>
                         <div class="media-body">
-                            <h4 class="media-heading">Donde estamos ubicados</h4>
-                            <p> 34°9'15.4"N 118°19'39.7"W - Estas coordenadas representan el Observatorio Griffith en Los Ángeles, California, EE. UU</p>
+                            <h4 class="media-heading">Dónde estamos ubicados</h4>
+                            <p> Nos encontramos ubicados en las instalaciones de la Universidad Don Bosco, Soyapango.</p>
                         </div>
                     </div>
 
@@ -209,7 +258,7 @@ session_destroy();
         <div class="container">
 
             <div class="section-header">
-                <h2 class="section-title text-center wow fadeInDown">Nuestro servicos</h2>
+                <h2 class="section-title text-center wow fadeInDown">Servicios que ofrecemos</h2>
                 <p class="text-center wow fadeInDown">Contamos con una amplia variedad de servicios como</p>
             </div>
 
@@ -219,7 +268,7 @@ session_destroy();
                         <div class="features-item">
                             <p><img class="img-thumbnail" src="../images/ico/comida-rapida (1).png" alt=""></p>
                             <h3 class="features-title font-alt">Comida </h3>
-                            Contamos con un amplio menu como comida rapida golicinas y mas.
+                            Contamos con un amplio menú como comida rápida golicinas y más.
                         </div>
                     </div>
 
@@ -234,15 +283,15 @@ session_destroy();
                     <div class="col-sm-6 col-md-3 col-lg-3 wow fadeInUp" data-wow-duration="300ms" data-wow-delay="200ms">
                         <div class="features-item">
                             <p><img class="img-thumbnail" src="../images/ico/carrusel (1).png" alt=""></p>
-                            <h3 class="features-title font-alt">juegos</h3>
-                            Contamos con diferentes juegos de maquinas para los mas grandes y pequeños.
+                            <h3 class="features-title font-alt">Juegos</h3>
+                            Contamos con diferentes juegos de máquinas para los más grandes y pequeños.
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-3 col-lg-3 wow fadeInUp" data-wow-duration="300ms" data-wow-delay="200ms">
                         <div class="features-item">
                             <p><img class="img-thumbnail" src="../images/ico/pista-de-baile (1).png" alt=""></p>
-                            <h3 class="features-title font-alt">Salon de fiesta</h3>
-                            Adicionalemente contamos con un salon defiesta que tenemos a tu disposicion.
+                            <h3 class="features-title font-alt">Salón de fiesta</h3>
+                            Adicionalemente contamos con un salón de fiesta que tenemos a tu disposición.
                         </div>
                     </div>
                 </div>
@@ -338,25 +387,42 @@ session_destroy();
                     <div id="carousel-testimonial" class="carousel slide text-center" data-ride="carousel">
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner" role="listbox">
-                            <div class="item active">
-                                <p><img class="img-circle img-thumbnail" src="../images/comentarios/mujer (1).png" alt=""></p>
-                                <h4>Luisa Morales</h4>
-                                <small>enero 2024</small>
-                                <p>La verdad es un buen lugar para disfrutar con los niños un ambiente muy agradable y alegre.</p>
-                            </div>
-                            <div class="item">
-                                <p><img class="img-circle img-thumbnail" src="../images/comentarios/hombre (1).png" alt=""></p>
-                                <h4>Emelio Reyes</h4>
-                                <small>marzo 2022</small>
-                                <p>Es un buen lugar para pasar con la familia amplia variedad de juegos y la comida tambien es muy rica.</p>
-                            </div>
+                            <?php
+                            if ($resultado->num_rows > 2) {
+                                $primerDato = true;
+                                $imagen = 0;
+                            ?>
+                                <?php
+                                while ($comentario = $resultado->fetch_assoc()) {
+                                    $imagen++;
+                                    if ($primerDato) {
+                                        $primerDato = false
+                                ?>
+                                        <div class="item active">
+                                            <p><img class="img-circle img-thumbnail" src="../images/comentarios/<?php echo $imagen; ?>.png" width="130px"></p>
+                                            <h4><?php echo $comentario['nombre_usuarios'] ?></h4>
+                                            <small><?php echo $comentario['fecha_comentario'] ?></small>
+                                            <p><?php echo $comentario['comentario'] ?></p>
+                                        </div>
+                                    <?php } else { ?>
+                                        <div class="item">
+                                            <p><img class="img-circle img-thumbnail" src="../images/comentarios/<?php echo $imagen; ?>.png" width="130px"></p>
+                                            <h4><?php echo $comentario['nombre_usuarios'] ?></h4>
+                                            <small><?php echo $comentario['fecha_comentario'] ?></small>
+                                            <p><?php echo $comentario['comentario'] ?></p>
+                                        </div>
+                                    <?php }
+                                    ?>
 
-                            <div class="item">
-                                <p><img class="img-circle img-thumbnail" src="../images/comentarios/trabajo-en-equipo (1).png" alt=""></p>
-                                <h4>Luis diaz. </h4>
-                                <small>2024</small>
-                                <p>Super recomendado el lugar las intalaciones cuenta con un ambiente familiar y el personal es muy amable.</p>
-                            </div>
+                                <?php } ?>
+                            <?php } else { ?>
+                                <div class="item active">
+                                    <p><img class="img-circle img-thumbnail" src="../images/logo.png" width="130px"></p>
+                                    <h4>GameSivar</h4>
+                                    <small>Mayo 2024</small>
+                                    <p>Escribenos un comentario para ponernos en contacto, podrás aparecer en nuestra página.</p>
+                                </div>
+                            <?php }  ?>
                         </div>
 
                         <!-- Controls -->
@@ -384,10 +450,12 @@ session_destroy();
         <div class="container">
             <div class="row">
                 <div class="section-header">
-                    <h2 class="section-title text-center wow fadeInDown animated" style="visibility: visible;">Mas informacion</h2>
+                    <h2 class="section-title text-center wow fadeInDown animated" style="visibility: visible;">Más informacion</h2>
+                    <p class="text-center wow fadeInDown">Debes tener un correo registrado con nostros para poder enviar un email</p>
+
 
                 </div>
-                <form id="main-contact-form" name="contact-form" method="post" action="sendemail.php">
+                <form id="main-contact-form" name="contact-form" method="post" action="Comentarios.php">
                     <div class="col-lg-6 animated animate-from-left" style="opacity: 1; left: 0px;">
 
                         <div class="form-group">
@@ -399,8 +467,13 @@ session_destroy();
                             <input type="email" id="email" name="email" class="form-control" placeholder="Email" required>
                         </div>
                         <div class="form-group">
-                            <label for="subject">Asunto</label>
-                            <input type="text" id="asunto" name="asunto" class="form-control" placeholder="Subject" required>
+                            <label for="asunto">Asunto</label>
+                            <select name="asunto" id="asunto" class="form-control" required>
+                                <option class="form-control" value="Profesional">Contacto Profesional</option>
+                                <option class="form-control" value="Opinion">Dar tu valiosa opinión</option>
+                                <option class="form-control" value="Promocion">Información de promociones</option>
+                            </select>
+                            <!--<input type="text" id="asunto" name="asunto" class="form-control" placeholder="Subject" required>-->
                         </div>
 
                     </div>
