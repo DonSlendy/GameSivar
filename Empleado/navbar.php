@@ -26,7 +26,7 @@
                 <ul id="nav" class="nav navbar-nav">
                     <li><a href="Empleado.php"><?php echo $_SESSION["nombreComSe"] ?></a></li>
                     <li><a href="VentadeTarjetas.php">Venta de tarjetas</a></li>
-                    <li class="scroll"><a href="#venta" data-section="#venta">Recarga de Tarjetas</a></li>
+                    <li><a href="RecargaTarjeta.php">Recarga de Tarjetas</a></li>
                     <li><a href="VentaDePremios.php">Venta de Premios</a></li>
                     <li><a href="GestionDeVentas.php">Gestion de Ventas</a></li>
                     <li><a href="../Inicio/Inicio.php">Cerrar Sesión</a></li>
