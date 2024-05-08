@@ -60,7 +60,7 @@ $resultado = $sql->get_result();
     <div class="container">
         <div class="row">
             <div class="section-header">
-                <h2 class="section-title text-center wow fadeInDown animated" style="visibility: visible;">CRUD Empleado</h2>
+                <h2 class="section-title text-center wow fadeInDown animated" style="visibility: visible;">CRUD Premios</h2>
             </div>
             <div class="col-lg-6">
                 <form id="main-contact-form" name="contact-form" method="post" action="CrearEditarPremio.php" enctype="multipart/form-data">
